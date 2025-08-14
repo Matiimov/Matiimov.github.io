@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Mateusz Wichtowski — Data Engineer</title>
+    <meta
+      name="description"
+      content="Portfolio of Mateusz Wichtowski: data engineering, ETL/ELT, automation, and analytics projects."
+    />
+    <meta name="author" content="Mateusz Wichtowski" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      :root {
+        --bg: rgba(249, 249, 249, 1);
+        --text: #0f172a;
+        --muted: #475569;
+        --surface: #f8fafc;
+        --card: rgba(249, 249, 249, 1);
+        --border: #e2e8f0;
+        --primary: #111827;
+        --accent: #2563eb;
+        --radius: 14px;
+        --shadow: 0 6px 22px rgba(2, 6, 23, 0.08);
+        --container: 1120px;
+        --s1: 4px;
+        --s2: 8px;
+        --s3: 12px;
+        --s4: 16px;
+        --s5: 24px;
+        --s6: 32px;
+        --s8: 48px;
+        --s10: 64px;
+      }
+      html[data-theme="dark"] {
+        --bg: #0b1220;
+        --text: #e5e7eb;
+        --muted: #94a3b8;
+        --surface: #0f172a;
+        --card: #0c1324;
+        --border: #1f2a3a;
+        --primary: #e5e7eb;
+        --accent: #60a5fa;
+        --shadow: 0 6px 22px rgba(0, 0, 0, 0.45);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto,
+          "Helvetica Neue", Arial;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.65;
+      }
+
+      .container {
+        max-width: var(--container);
+        padding: 0 var(--s5);
+        margin: 0 auto;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(249, 249, 249, 1);
+        border-bottom: 1px solid var(--border);
+        backdrop-filter: blur(6px);
+      }
+      html[data-theme="dark"] .site-header {
+        background: rgba(12, 19, 36, 0.85);
+      }
+      .brand {
+        display: inline-block;
+        padding: var(--s5) 0;
+        font-weight: 700;
+        text-decoration: none;
+        color: var(--text);
+      }
+      .site-nav {
+        display: flex;
+        align-items: center;
+        gap: var(--s4);
+      }
+      .nav-toggle {
+        display: none;
+        background: transparent;
+        border: 1px solid var(--border);
+        padding: 8px 10px;
+        border-radius: 10px;
+        cursor: pointer;
+        color: var(--muted);
+      }
+      .nav-links {
+        display: flex;
+        gap: var(--s4);
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: var(--muted);
+      }
+      .nav-links a:hover {
+        color: var(--text);
+      }
+      .theme-toggle {
+        border: 1px solid var(--border);
+        background: transparent;
+        color: var(--muted);
+        padding: 8px 10px;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      .hero {
+        position: relative;
+        min-height: 72vh;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid var(--border);
+        overflow: clip;
+      }
+      #particles {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--surface);
+      }
+      .hero__inner {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        gap: var(--s6);
+        grid-template-columns: 1.6fr 1fr;
+        align-items: center;
+        padding: var(--s10) 0;
+      }
+      .hero__text h1 {
+        font-size: clamp(28px, 4vw, 48px);
+        line-height: 1.18;
+        color: var(--primary);
+        margin: 0 0 var(--s4);
+      }
+      .lede {
+        color: var(--muted);
+        max-width: 62ch;
+      }
+      .hero__stats {
+        display: flex;
+        gap: var(--s6);
+        padding: 0;
+        margin: var(--s4) 0;
+        list-style: none;
+        color: var(--muted);
+        flex-wrap: wrap;
+      }
+      .cta {
+        display: flex;
+        gap: var(--s4);
+        margin-top: var(--s3);
+      }
+      .hero__headshot {
+        display: flex;
+        justify-content: center;
+      }
+      .headshot-placeholder {
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        border: 1px dashed var(--border);
+        display: grid;
+        place-items: center;
+        color: var(--muted);
+        background: var(--card);
+        box-shadow: var(--shadow);
+        text-align: center;
+        font-weight: 600;
+      }
+
+      .section {
+        padding: var(--s8) 0;
+      }
+      .section h2 {
+        font-size: clamp(22px, 3vw, 28px);
+        margin: 0 0 var(--s4);
+        color: var(--primary);
+      }
+      .note {
+        color: var(--muted);
+      }
+
+      .chips {
+        display: flex;
+        gap: var(--s3);
+        flex-wrap: wrap;
+      }
+      .chip {
+        padding: 6px 10px;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: var(--card);
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .grid {
+        display: grid;
+        gap: var(--s5);
+        grid-template-columns: repeat(12, 1fr);
+      }
+      .card {
+        grid-column: span 12;
+        border: 1px solid var(--border);
+        background: var(--card);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+      @media (min-width: 860px) {
+        .card {
+          grid-column: span 6;
+        }
+      }
+      @media (min-width: 1100px) {
+        .card {
+          grid-column: span 4;
+        }
+      }
+      .card__media .img {
+        width: 100%;
+        aspect-ratio: 16/9;
+        background: var(--surface);
+      }
+      .card__media .ph {
+        background-image: linear-gradient(
+          120deg,
+          var(--surface),
+          #fff0 40%,
+          var(--surface)
+        );
+        background-size: 200% 100%;
+        animation: shimmer 2.2s linear infinite;
+      }
+      @keyframes shimmer {
+        to {
+          background-position: -200% 0;
+        }
+      }
+      .card__body {
+        padding: var(--s5);
+      }
+      .card__body h3 {
+        margin: 0 0 var(--s2);
+        color: var(--primary);
+      }
+      .card__body p {
+        margin: 0 0 var(--s3);
+        color: var(--muted);
+      }
+      .card__footer {
+        display: flex;
+        align-items: center;
+        gap: var(--s3);
+        padding: 0 var(--s5) var(--s5);
+      }
+      .tag {
+        font-size: 12px;
+        text-decoration: none;
+        color: var(--muted);
+        background: var(--surface);
+        border: 1px solid var(--border);
+        padding: 4px 8px;
+        border-radius: 999px;
+      }
+      .tag:hover {
+        color: var(--text);
+      }
+
+      .timeline {
+        display: grid;
+        gap: var(--s4);
+      }
+      .timeline__item {
+        padding: var(--s5);
+        border: 1px solid var(--border);
+        background: var(--card);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+      .timeline__item h3 {
+        margin: 0 0 6px;
+        color: var(--primary);
+      }
+      .timeline__item .muted {
+        color: var(--muted);
+        margin: 0 0 8px;
+      }
+
+      .contact-links {
+        display: flex;
+        gap: var(--s3);
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        display: inline-block;
+        text-decoration: none;
+        color: #fff;
+        background: var(--primary);
+        padding: 10px 16px;
+        border-radius: 10px;
+        box-shadow: var(--shadow);
+        transition: transform 0.05s ease-in;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+      .btn--ghost {
+        background: transparent;
+        color: var(--primary);
+        border: 1px solid var(--primary);
+      }
+
+      .site-footer {
+        padding: var(--s8) 0 var(--s6);
+        color: var(--muted);
+        border-top: 1px solid var(--border);
+      }
+
+      @media (max-width: 900px) {
+        .nav-toggle {
+          display: inline-block;
+        }
+        .nav-links {
+          position: absolute;
+          right: var(--s5);
+          top: 64px;
+          display: none;
+          flex-direction: column;
+          gap: 10px;
+          background: var(--card);
+          border: 1px solid var(--border);
+          padding: 10px;
+          border-radius: 12px;
+          box-shadow: var(--shadow);
+        }
+        .nav-links.show {
+          display: flex;
+        }
+        .hero__inner {
+          grid-template-columns: 1fr;
+          text-align: left;
+        }
+        .hero {
+          min-height: 76vh;
+        }
+      }
+      a:focus,
+      button:focus {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+        border-radius: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header container">
+      <a href="#home" class="brand">Mateusz Wichtowski</a>
+      <nav class="site-nav" aria-label="Primary">
+        <button
+          class="nav-toggle"
+          id="navToggle"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          ☰
+        </button>
+        <div class="nav-links" id="navLinks">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Portfolio</a>
+          <a href="#experience">IT Experience</a>
+          <a href="#contact">Contact</a>
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Toggle dark mode"
+          >
+            🌓
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main id="home">
+      <section class="hero">
+        <canvas id="particles" aria-hidden="true"></canvas>
+        <div class="hero__inner container">
+          <div class="hero__text">
+            <h1>
+              Data Engineer<br />
+              AI Engineer<br />
+              Software Developer
+            </h1>
+            <p class="lede">
+              With hands-on experience delivering end-to-end applications, I
+              thrive at the intersection of data, technology, and
+              problem-solving. My strengths lie in building scalable systems,
+              extracting actionable insights from complex datasets, and
+              collaborating across teams to turn ambitious ideas into impactful
+              solutions.
+            </p>
+            <ul class="hero__stats">
+              <li>
+                UTS Graduate - Proudly holding a Master of IT (Data
+                Analytics)<br />
+                GPA 6.44, WAM 84.56
+              </li>
+              <li>
+                <strong
+                  >Award Winner at UTS Tech Festival 2025 - Software Engineering
+                  Showcase<br />
+                  (Best Interface/Design)</strong
+                >
+              </li>
+            </ul>
+            <div class="cta">
+              <a href="#projects" class="btn btn--primary">View Portfolio</a>
+              <a class="btn btn--ghost" href="#contact">Contact</a>
+            </div>
+          </div>
+          <div class="hero__headshot">
+            <img
+              src="images/me.jpeg"
+              alt="Mateusz Wichtowski"
+              class="headshot-img"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section container">
+        <h2>About</h2>
+        <p>
+          I’m a Melbourne-based engineer working across data, AI, and software
+          development. I design and deliver scalable, end-to-end systems that
+          turn complex problems into simple, reliable solutions. My focus is on
+          creating technology that’s robust under the hood yet seamless for the
+          people who use it - enabling teams to move faster and make smarter
+          decisions.
+        </p>
+        <p>
+          With hands-on experience delivering end-to-end applications, I thrive
+          at the intersection of technology and problem-solving. My work spans
+          cloud platforms, big data processing, AI integration, and full-stack
+          development, enabling organizations to leverage technology for smarter
+          decisions and intelligent automation.
+        </p>
+        <p>
+          I’m always excited to collaborate on innovative projects that make a
+          real difference. If you’re looking for someone with an engineering
+          mindset, strong problem-solving skills, and an eagerness to learn, I’d
+          love to bring that energy to your team.
+        </p>
+      </section>
+
+      <section id="skills" class="section container">
+        <h2>Skills</h2>
+        <div class="chips">
+          <span class="chip">Python</span>
+          <span class="chip">SQL</span><span class="chip">Data Modeling</span>
+          <span class="chip">ETL / Data Pipeline Engineering</span
+          ><span class="chip"
+            >ML Models Building / Training & Hyperparameter Tuning</span
+          ><span class="chip">Computer Vision</span
+          ><span class="chip">Django</span><span class="chip">Flask</span>
+          <span class="chip">Natural Language Processing (NLP)</span
+          ><span class="chip">RESTful API Design</span
+          ><span class="chip">Software Architecture Design</span>
+          <span class="chip">Docker</span>
+          <span class="chip">Building Dashboards</span
+          ><span class="chip">Cloud Platform (AWS)</span>
+          <span class="chip">Frontend Development (HTML, CSS, JavaScript)</span
+          ><span class="chip">Prototype Design (Figma)</span>
+          <span class="chip">Agile Methodologies</span>
+          <span class="chip">Social Skills 🙂</span>
+        </div>
+      </section>
+
+      <section id="projects" class="section container">
+        <h2>Portfolio</h2>
+        <div class="grid">
+          <article class="card">
+            <div class="card__media">
+              <img src="images/iSEAO.jpg" alt="iSEAO Project" />
+            </div>
+            <div class="card__body">
+              <h3>Pipelines & Reporting (iSEAO)</h3>
+              <p>
+                Designed and deployed automated ETL pipelines with built-in
+                validation checks and dynamic summary tables, streamlining
+                reporting and eliminating manual effort.
+              </p>
+            </div>
+            <div class="card__footer">
+              <span class="tag">Python</span><span class="tag">ETL</span
+              ><span class="tag">Report Automation</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__media card__media--phoneWide">
+              <img
+                src="images/CoffeeBond.jpg"
+                alt="CoffeeBond app preview"
+                class="card-img"
+              />
+            </div>
+            <div class="card__body">
+              <h3>CoffeeBond (iOS)</h3>
+              <p>
+                Award-winning app for coffee lovers, which I led the development
+                of. Designed with MVVM architecture for clean, maintainable
+                code, featuring a polished interface and seamless user
+                experience.
+              </p>
+            </div>
+            <div class="card__footer">
+              <a
+                href="https://github.com/Matiimov/CoffeeBond"
+                target="_blank"
+                rel="noopener"
+                >GitHub</a
+              >
+              <a href="#" class="tag">Swift</a><a href="#" class="tag">iOS</a
+              ><a href="#" class="tag">UI/UX</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__media">
+              <img
+                src="images/SkinDx.jpg"
+                alt="SkinDx app screenshot"
+                class="card-img"
+              />
+            </div>
+            <div class="card__body">
+              <h3>SkinDx</h3>
+              <p>
+                Deep learning web app for skin cancer detection, using CNN and
+                U-Net for classification and segmentation. Built with Streamlit
+                for an intuitive interface and rapid, accurate results.
+              </p>
+            </div>
+            <div class="card__footer">
+              <a
+                href="https://github.com/Matiimov/Skin-Cancer-Detection-"
+                target="_blank"
+                rel="noopener"
+                >GitHub</a
+              >
+              <a href="#" class="tag">Python</a>
+              <a href="#" class="tag">DeepLearning</a
+              ><a href="#" class="tag">Streamlit</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><div class="img ph"></div></div>
+            <div class="card__body">
+              <h3>Bubble Pop Game</h3>
+              <p>
+                Lightweight game project; demonstrates clean code and simple
+                mechanics.
+              </p>
+            </div>
+            <div class="card__footer">
+              <a
+                href="https://github.com/Matiimov/BubblePopGame"
+                target="_blank"
+                rel="noopener"
+                >GitHub</a
+              >
+              <a href="#" class="tag">Swift</a><a href="#" class="tag">Game</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__media">
+              <img
+                src="images/FidesAdvisory.jpg"
+                alt="Fides Advisory Web Scraping Infrastructure"
+              />
+            </div>
+            <div class="card__body">
+              <h3>Web Scraping Infrastructure (Fides Advisory)</h3>
+              <p>
+                Built scalable web scraping systems with authentication handling
+                and dynamic pagination, delivering clean, API-ready datasets for
+                high-impact analytics.
+              </p>
+            </div>
+            <div class="card__footer">
+              <span class="tag">Python</span><span class="tag">ETL</span
+              ><span class="tag">API</span>
+              <span class="tag">Lambda</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__media">
+              <img src="images/CustomCusine.jpg" alt="Custom Cuisine" />
+            </div>
+            <div class="card__body">
+              <h3>CustomCuisine Website</h3>
+              <p>Responsive front-end website demonstrating clean UI design.</p>
+            </div>
+            <div class="card__footer">
+              <a
+                href="https://github.com/Matiimov/CustomCuisine-Website-Project"
+                target="_blank"
+                rel="noopener"
+                >GitHub</a
+              >
+              <a href="#" class="tag">HTML/CSS/JS</a
+              ><a href="#" class="tag">Web</a><a href="#" class="tag">UI</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__media">
+              <img src="images/Calculator.jpg" alt="Calculator App" />
+            </div>
+            <div class="card__body">
+              <h3>Calculator App</h3>
+              <p>
+                Swift calculator app built with test-driven development, passing
+                all unit tests.
+              </p>
+            </div>
+            <div class="card__footer">
+              <a
+                href="https://github.com/Matiimov/CalculatorApp"
+                target="_blank"
+                rel="noopener"
+                >GitHub</a
+              >
+              <a href="#" class="tag">Swift</a
+              ><a href="#" class="tag">Unit Testing</a
+              ><a href="#" class="tag">iOS</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__media">
+              <img src="images/UniversitySystem.jpg" alt="University System" />
+            </div>
+            <div class="card__body">
+              <h3>University System</h3>
+              <p>
+                Academic project highlighting data handling and software
+                structure.
+              </p>
+            </div>
+            <div class="card__footer">
+              <a
+                href="https://github.com/Matiimov/UniversitySystem"
+                target="_blank"
+                rel="noopener"
+                >GitHub</a
+              >
+              <a href="#" class="tag">Python</a><a href="#" class="tag">CRUD</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="experience" class="section container">
+        <h2>Experience</h2>
+        <div class="timeline">
+          <div class="timeline__item">
+            <h3>AI Product Developer • iSEAO</h3>
+            <p class="muted">Sydney, Australia • Apr 2024 – Jan 2025</p>
+            <ul>
+              <li>Engineered and maintained scalable ETL pipelines.</li>
+              <li>
+                Implemented automated validation checks for data integrity.
+              </li>
+              <li>
+                Automated reports and summary tables to reduce manual effort.
+              </li>
+            </ul>
+          </div>
+
+          <div class="timeline__item">
+            <h3>Software Developer Intern • Fides Advisory</h3>
+            <p class="muted">Seoul, South Korea • May 2021 – Apr 2022</p>
+            <ul>
+              <li>
+                Built and automated data pipelines for large-scale web scraping
+                infrastructure.
+              </li>
+              <li>Optimized complex SQL queries to improve performance.</li>
+              <li>
+                Preprocessed data using Python (pandas, NumPy) for analytics
+                pipelines.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="education" class="section container">
+        <h2>Education</h2>
+        <div class="timeline">
+          <div class="timeline__item edu-item">
+            <div class="edu-text">
+              <h3>Master of Information Technology (Data Analytics)</h3>
+              <p class="muted">
+                University of Technology Sydney (UTS) - Graduated with
+                Distinction
+              </p>
+              <p class="muted">GPA 6.44 • WAM 84.56</p>
+            </div>
+            <div class="edu-logo">
+              <img src="images/uts.jpg" alt="UTS Logo" />
+            </div>
+          </div>
+
+          <div class="timeline__item edu-item">
+            <div class="edu-text">
+              <h3>Bachelor of Economics (Risk Management)</h3>
+              <p class="muted">University of Economics in Katowice</p>
+            </div>
+            <div class="edu-logo">
+              <img src="images/uek.jpg" alt="UEK Logo" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section container">
+        <h2>Contact</h2>
+        <p>
+          Based in Melbourne, VIC • Open to Data Engineer, Data Scientist, Data
+          Analyst, AI Engineer, or Software Developer Roles
+        </p>
+
+        <!-- Email line (icon + address), not a button -->
+        <div class="email-line">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 2v.01L12 13 4 6.01V6h16zM4 18V8.236l7.382 5.514a1 1 0 0 0 1.236 0L20 8.236V18H4z"
+            />
+          </svg>
+
+          <a href="mailto:matiimov@gmail.com" class="email-address"
+            >matiimov@gmail.com</a
+          >
+        </div>
+
+        <!-- Social buttons -->
+        <div class="contact-links">
+          <a
+            class="btn btn--ghost"
+            href="https://www.linkedin.com/in/matiimov/"
+            target="_blank"
+            rel="noopener"
+            >LinkedIn</a
+          >
+
+          <a
+            class="btn btn--ghost"
+            href="https://github.com/Matiimov"
+            target="_blank"
+            rel="noopener"
+            >GitHub</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer container">
+      <small
+        >© <span id="year"></span> Mateusz Wichtowski. All rights
+        reserved.</small
+      >
+    </footer>
+
+    <script>
+      // Year
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Theme toggle
+      const root = document.documentElement;
+      const themeToggle = document.getElementById("themeToggle");
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme) root.setAttribute("data-theme", savedTheme);
+      themeToggle?.addEventListener("click", () => {
+        const next =
+          root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        root.setAttribute("data-theme", next);
+        localStorage.setItem("theme", next);
+      });
+
+      // Mobile nav
+      const navToggle = document.getElementById("navToggle");
+      const navLinks = document.getElementById("navLinks");
+      navToggle?.addEventListener("click", () => {
+        const showing = navLinks.classList.toggle("show");
+        navToggle.setAttribute("aria-expanded", showing ? "true" : "false");
+      });
+      navLinks
+        ?.querySelectorAll("a")
+        .forEach((a) =>
+          a.addEventListener("click", () => navLinks.classList.remove("show"))
+        );
+
+      // Particles
+      const canvas = document.getElementById("particles");
+      const ctx = canvas.getContext("2d", { alpha: true });
+      let W, H, DPR;
+      function resize() {
+        DPR = Math.min(window.devicePixelRatio || 1, 2);
+        W = canvas.clientWidth;
+        H = canvas.clientHeight;
+        canvas.width = Math.floor(W * DPR);
+        canvas.height = Math.floor(H * DPR);
+        ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      }
+      const COUNT = 80,
+        SPEED = 0.35,
+        LINK_DIST = 110,
+        P_SIZE = 2,
+        MOUSE_PULL = 0.06,
+        RETURN_FORCE = 0.002;
+      const points = [],
+        mouse = { x: 0, y: 0, active: false };
+      function init() {
+        points.length = 0;
+        for (let i = 0; i < COUNT; i++) {
+          points.push({
+            x: Math.random() * W,
+            y: Math.random() * H,
+            vx: (Math.random() - 0.5) * SPEED,
+            vy: (Math.random() - 0.5) * SPEED,
+          });
+        }
+      }
+      window.addEventListener("resize", () => {
+        resize();
+        init();
+      });
+      canvas.addEventListener("mousemove", (e) => {
+        const r = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - r.left;
+        mouse.y = e.clientY - r.top;
+        mouse.active = true;
+      });
+      canvas.addEventListener("mouseleave", () => (mouse.active = false));
+      function flowField(x, y, t) {
+        const nx = (x / W) * 2 * Math.PI + t * 0.0006,
+          ny = (y / H) * 2 * Math.PI + t * 0.0008;
+        return {
+          fx: Math.cos(nx) * 0.5 + Math.sin(ny) * 0.5,
+          fy: Math.sin(nx) * 0.5 - Math.cos(ny) * 0.5,
+        };
+      }
+      function loop(t) {
+        ctx.clearRect(0, 0, W, H);
+        const isDark =
+          document.documentElement.getAttribute("data-theme") === "dark";
+        const dot = isDark ? "#9fb3c8" : "#475569";
+        const line = isDark ? "rgba(160,190,220,.35)" : "rgba(71,85,105,.35)";
+        for (let i = 0; i < COUNT; i++) {
+          const p = points[i],
+            { fx, fy } = flowField(p.x, p.y, t);
+          p.vx += fx * RETURN_FORCE;
+          p.vy += fy * RETURN_FORCE;
+          if (mouse.active) {
+            const dx = mouse.x - p.x,
+              dy = mouse.y - p.y,
+              d2 = Math.max(dx * dx + dy * dy, 1),
+              pull = MOUSE_PULL / d2;
+            p.vx += dx * pull;
+            p.vy += dy * pull;
+          }
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < -20) p.x = W + 20;
+          if (p.x > W + 20) p.x = -20;
+          if (p.y < -20) p.y = H + 20;
+          if (p.y > H + 20) p.y = -20;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, P_SIZE, 0, Math.PI * 2);
+          ctx.fillStyle = dot;
+          ctx.fill();
+        }
+        for (let i = 0; i < COUNT; i++)
+          for (let j = i + 1; j < COUNT; j++) {
+            const a = points[i],
+              b = points[j],
+              dx = a.x - b.x,
+              dy = a.y - b.y,
+              d = Math.hypot(dx, dy);
+            if (d < LINK_DIST) {
+              const alpha = 1 - d / LINK_DIST;
+              ctx.strokeStyle = line.replace(
+                /\.35\)$/,
+                (0.2 + 0.6 * alpha).toFixed(2) + ")"
+              );
+              ctx.lineWidth = 1;
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.stroke();
+            }
+          }
+        requestAnimationFrame(loop);
+      }
+      resize();
+      init();
+      requestAnimationFrame(loop);
+    </script>
+  </body>
+</html>
