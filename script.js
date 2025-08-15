@@ -1,19 +1,18 @@
-// Year
+// Footer year
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// Theme toggle
+// Theme switcher
 const root = document.documentElement;
 const themeToggle = document.getElementById("themeToggle");
 const savedTheme = localStorage.getItem("theme");
 if (savedTheme) root.setAttribute("data-theme", savedTheme);
-
 themeToggle?.addEventListener("click", () => {
   const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
   root.setAttribute("data-theme", next);
   localStorage.setItem("theme", next);
 });
 
-// Mobile nav
+// Mobile navigation
 const navToggle = document.getElementById("navToggle");
 const navLinks = document.getElementById("navLinks");
 navToggle?.addEventListener("click", () => {
@@ -24,7 +23,7 @@ navLinks?.querySelectorAll("a").forEach((a) => {
   a.addEventListener("click", () => navLinks.classList.remove("show"));
 });
 
-// Smooth anchor offset for sticky header (optional JS assist)
+// Smooth scroll with header offset
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener("click", (e) => {
     const id = link.getAttribute("href");
@@ -32,14 +31,14 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
       const el = document.querySelector(id);
       if (el) {
         e.preventDefault();
-        const y = el.getBoundingClientRect().top + window.pageYOffset - 70; // offset for header
+        const y = el.getBoundingClientRect().top + window.pageYOffset - 70;
         window.scrollTo({ top: y, behavior: "smooth" });
       }
     }
   });
 });
 
-/* ====== Moving datapoints canvas (lightweight, no libs) ====== */
+// Particle background
 const canvas = document.getElementById("particles");
 const ctx = canvas.getContext("2d", { alpha: true });
 
@@ -55,18 +54,18 @@ function resize() {
 resize();
 window.addEventListener("resize", resize);
 
-// Config (tune for your taste)
-const COUNT = 120; // number of points
-const SPEED = 0.35; // base speed
-const LINK_DIST = 140; // max distance to draw links
-const P_SIZE = 2.0; // point radius
-const MOUSE_PULL = 0.06; // mouse influence
-const RETURN_FORCE = 0.002; // soft force pulling particles to "flow field"
+// Config
+const COUNT = 120;
+const SPEED = 0.35;
+const LINK_DIST = 140;
+const P_SIZE = 2.0;
+const MOUSE_PULL = 0.06;
+const RETURN_FORCE = 0.002;
 
 const points = [];
 const mouse = { x: 0, y: 0, active: false };
 
-// Initialize points with random positions/velocities
+// Initialize particles
 function init() {
   points.length = 0;
   for (let i = 0; i < COUNT; i++) {
@@ -89,7 +88,7 @@ canvas.addEventListener("mousemove", (e) => {
 });
 canvas.addEventListener("mouseleave", () => (mouse.active = false));
 
-// Simple flow field using gentle sine waves; particles softly return toward the field path
+// Flow field
 function flowField(x, y, t) {
   const nx = (x / W) * 2 * Math.PI + t * 0.0006;
   const ny = (y / H) * 2 * Math.PI + t * 0.0008;
@@ -102,54 +101,46 @@ function flowField(x, y, t) {
 function loop(t) {
   ctx.clearRect(0, 0, W, H);
 
-  // Colors depend on theme
   const isDark = document.documentElement.getAttribute("data-theme") === "dark";
   const dot = isDark ? "#9fb3c8" : "#475569";
-  const line = isDark ? "rgba(160, 190, 220, 0.35)" : "rgba(71, 85, 105, 0.35)";
+  const line = isDark
+    ? "rgba(160, 190, 220, 0.35)"
+    : "rgba(71, 85, 105, 0.35)";
 
-  // Update & draw points
   for (let i = 0; i < COUNT; i++) {
     const p = points[i];
 
-    // Flow field influence
     const { fx, fy } = flowField(p.x, p.y, t);
     p.vx += fx * RETURN_FORCE;
     p.vy += fy * RETURN_FORCE;
 
-    // Mouse influence
     if (mouse.active) {
       const dx = mouse.x - p.x;
       const dy = mouse.y - p.y;
       const d2 = Math.max(dx * dx + dy * dy, 1);
-      const pull = MOUSE_PULL / d2; // weaker with distance
+      const pull = MOUSE_PULL / d2;
       p.vx += dx * pull;
       p.vy += dy * pull;
     }
 
-    // Move
     p.x += p.vx;
     p.y += p.vy;
 
-    // Wrap around edges for continuous motion
     if (p.x < -20) p.x = W + 20;
     if (p.x > W + 20) p.x = -20;
     if (p.y < -20) p.y = H + 20;
     if (p.y > H + 20) p.y = -20;
 
-    // Draw point
     ctx.beginPath();
     ctx.arc(p.x, p.y, P_SIZE, 0, Math.PI * 2);
     ctx.fillStyle = dot;
     ctx.fill();
   }
 
-  // Draw connecting lines between nearby points
   for (let i = 0; i < COUNT; i++) {
     for (let j = i + 1; j < COUNT; j++) {
-      const a = points[i],
-        b = points[j];
-      const dx = a.x - b.x,
-        dy = a.y - b.y;
+      const a = points[i], b = points[j];
+      const dx = a.x - b.x, dy = a.y - b.y;
       const d = Math.hypot(dx, dy);
       if (d < LINK_DIST) {
         const alpha = 1 - d / LINK_DIST;
@@ -169,3 +160,4 @@ function loop(t) {
   requestAnimationFrame(loop);
 }
 requestAnimationFrame(loop);
+
