@@ -1,430 +1,66 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+
+<html data-theme="light" lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Mateusz Wichtowski — Data Engineer</title>
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <title>Mateusz Wichtowski — Portfolio</title>
     <meta
-      name="description"
       content="Portfolio of Mateusz Wichtowski: data engineering, ETL/ELT, automation, and analytics projects."
+      name="description"
     />
-    <meta name="author" content="Mateusz Wichtowski" />
-
+    <meta content="Mateusz Wichtowski" name="author" />
     <!-- Fonts and stylesheet -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
-
-    <style>
-      :root {
-        --bg: rgba(249, 249, 249, 1);
-        --text: #0f172a;
-        --muted: #475569;
-        --surface: #f8fafc;
-        --card: rgba(249, 249, 249, 1);
-        --border: #e2e8f0;
-        --primary: #111827;
-        --accent: #2563eb;
-        --radius: 14px;
-        --shadow: 0 6px 22px rgba(2, 6, 23, 0.08);
-        --container: 1120px;
-        --s1: 4px;
-        --s2: 8px;
-        --s3: 12px;
-        --s4: 16px;
-        --s5: 24px;
-        --s6: 32px;
-        --s8: 48px;
-        --s10: 64px;
-      }
-      html[data-theme="dark"] {
-        --bg: #0b1220;
-        --text: #e5e7eb;
-        --muted: #94a3b8;
-        --surface: #0f172a;
-        --card: #0c1324;
-        --border: #1f2a3a;
-        --primary: #e5e7eb;
-        --accent: #60a5fa;
-        --shadow: 0 6px 22px rgba(0, 0, 0, 0.45);
-      }
-      * {
-        box-sizing: border-box;
-      }
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-      }
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto,
-          "Helvetica Neue", Arial;
-        background: var(--bg);
-        color: var(--text);
-        line-height: 1.65;
-      }
-
-      .container {
-        max-width: var(--container);
-        padding: 0 var(--s5);
-        margin: 0 auto;
-      }
-
-      .site-header {
-        position: sticky;
-        top: 0;
-        z-index: 20;
-        background: rgba(249, 249, 249, 1);
-        border-bottom: 1px solid var(--border);
-        backdrop-filter: blur(6px);
-      }
-      html[data-theme="dark"] .site-header {
-        background: rgba(12, 19, 36, 0.85);
-      }
-      .brand {
-        display: inline-block;
-        padding: var(--s5) 0;
-        font-weight: 700;
-        text-decoration: none;
-        color: var(--text);
-      }
-      .site-nav {
-        display: flex;
-        align-items: center;
-        gap: var(--s4);
-      }
-      .nav-toggle {
-        display: none;
-        background: transparent;
-        border: 1px solid var(--border);
-        padding: 8px 10px;
-        border-radius: 10px;
-        cursor: pointer;
-        color: var(--muted);
-      }
-      .nav-links {
-        display: flex;
-        gap: var(--s4);
-        align-items: center;
-        flex-wrap: wrap;
-      }
-      .nav-links a {
-        text-decoration: none;
-        color: var(--muted);
-      }
-      .nav-links a:hover {
-        color: var(--text);
-      }
-      .theme-toggle {
-        border: 1px solid var(--border);
-        background: transparent;
-        color: var(--muted);
-        padding: 8px 10px;
-        border-radius: 10px;
-        cursor: pointer;
-      }
-
-      .hero {
-        position: relative;
-        min-height: 72vh;
-        display: flex;
-        align-items: center;
-        border-bottom: 1px solid var(--border);
-        overflow: clip;
-      }
-      #particles {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        background: var(--surface);
-      }
-      .hero__inner {
-        position: relative;
-        z-index: 1;
-        display: grid;
-        gap: var(--s6);
-        grid-template-columns: 1.6fr 1fr;
-        align-items: center;
-        padding: var(--s10) 0;
-      }
-      .hero__text h1 {
-        font-size: clamp(28px, 4vw, 48px);
-        line-height: 1.18;
-        color: var(--primary);
-        margin: 0 0 var(--s4);
-      }
-      .lede {
-        color: var(--muted);
-        max-width: 62ch;
-      }
-      .hero__stats {
-        display: flex;
-        gap: var(--s6);
-        padding: 0;
-        margin: var(--s4) 0;
-        list-style: none;
-        color: var(--muted);
-        flex-wrap: wrap;
-      }
-      .cta {
-        display: flex;
-        gap: var(--s4);
-        margin-top: var(--s3);
-      }
-      .hero__headshot {
-        display: flex;
-        justify-content: center;
-      }
-      .headshot-placeholder {
-        width: 220px;
-        height: 220px;
-        border-radius: 50%;
-        border: 1px dashed var(--border);
-        display: grid;
-        place-items: center;
-        color: var(--muted);
-        background: var(--card);
-        box-shadow: var(--shadow);
-        text-align: center;
-        font-weight: 600;
-      }
-
-      .section {
-        padding: var(--s8) 0;
-      }
-      .section h2 {
-        font-size: clamp(22px, 3vw, 28px);
-        margin: 0 0 var(--s4);
-        color: var(--primary);
-      }
-      .note {
-        color: var(--muted);
-      }
-
-      .chips {
-        display: flex;
-        gap: var(--s3);
-        flex-wrap: wrap;
-      }
-      .chip {
-        padding: 6px 10px;
-        border: 1px solid var(--border);
-        border-radius: 999px;
-        background: var(--card);
-        color: var(--muted);
-        font-size: 14px;
-      }
-
-      .grid {
-        display: grid;
-        gap: var(--s5);
-        grid-template-columns: repeat(12, 1fr);
-      }
-      .card {
-        grid-column: span 12;
-        border: 1px solid var(--border);
-        background: var(--card);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        overflow: hidden;
-      }
-      @media (min-width: 860px) {
-        .card {
-          grid-column: span 6;
-        }
-      }
-      @media (min-width: 1100px) {
-        .card {
-          grid-column: span 4;
-        }
-      }
-      .card__media .img {
-        width: 100%;
-        aspect-ratio: 16/9;
-        background: var(--surface);
-      }
-      .card__media .ph {
-        background-image: linear-gradient(
-          120deg,
-          var(--surface),
-          #fff0 40%,
-          var(--surface)
-        );
-        background-size: 200% 100%;
-        animation: shimmer 2.2s linear infinite;
-      }
-      @keyframes shimmer {
-        to {
-          background-position: -200% 0;
-        }
-      }
-      .card__body {
-        padding: var(--s5);
-      }
-      .card__body h3 {
-        margin: 0 0 var(--s2);
-        color: var(--primary);
-      }
-      .card__body p {
-        margin: 0 0 var(--s3);
-        color: var(--muted);
-      }
-      .card__footer {
-        display: flex;
-        align-items: center;
-        gap: var(--s3);
-        padding: 0 var(--s5) var(--s5);
-      }
-      .tag {
-        font-size: 12px;
-        text-decoration: none;
-        color: var(--muted);
-        background: var(--surface);
-        border: 1px solid var(--border);
-        padding: 4px 8px;
-        border-radius: 999px;
-      }
-      .tag:hover {
-        color: var(--text);
-      }
-
-      .timeline {
-        display: grid;
-        gap: var(--s4);
-      }
-      .timeline__item {
-        padding: var(--s5);
-        border: 1px solid var(--border);
-        background: var(--card);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-      }
-      .timeline__item h3 {
-        margin: 0 0 6px;
-        color: var(--primary);
-      }
-      .timeline__item .muted {
-        color: var(--muted);
-        margin: 0 0 8px;
-      }
-
-      .contact-links {
-        display: flex;
-        gap: var(--s3);
-        flex-wrap: wrap;
-      }
-
-      .btn {
-        display: inline-block;
-        text-decoration: none;
-        color: #fff;
-        background: var(--primary);
-        padding: 10px 16px;
-        border-radius: 10px;
-        box-shadow: var(--shadow);
-        transition: transform 0.05s ease-in;
-      }
-      .btn:hover {
-        transform: translateY(-1px);
-      }
-      .btn--ghost {
-        background: transparent;
-        color: var(--primary);
-        border: 1px solid var(--primary);
-      }
-
-      .site-footer {
-        padding: var(--s8) 0 var(--s6);
-        color: var(--muted);
-        border-top: 1px solid var(--border);
-      }
-
-      @media (max-width: 900px) {
-        .nav-toggle {
-          display: inline-block;
-        }
-        .nav-links {
-          position: absolute;
-          right: var(--s5);
-          top: 64px;
-          display: none;
-          flex-direction: column;
-          gap: 10px;
-          background: var(--card);
-          border: 1px solid var(--border);
-          padding: 10px;
-          border-radius: 12px;
-          box-shadow: var(--shadow);
-        }
-        .nav-links.show {
-          display: flex;
-        }
-        .hero__inner {
-          grid-template-columns: 1fr;
-          text-align: left;
-        }
-        .hero {
-          min-height: 76vh;
-        }
-      }
-      a:focus,
-      button:focus {
-        outline: 2px solid var(--accent);
-        outline-offset: 2px;
-        border-radius: 6px;
-      }
-    </style>
+    <link href="style.css" rel="stylesheet" />
   </head>
   <body>
     <!-- Header -->
     <header class="site-header container">
-      <a href="#home" class="brand">Mateusz Wichtowski</a>
-      <nav class="site-nav" aria-label="Primary">
+      <a class="brand" href="#home">Mateusz Wichtowski</a>
+      <nav aria-label="Primary" class="site-nav">
         <button
+          aria-expanded="false"
+          aria-label="Toggle menu"
           class="nav-toggle"
           id="navToggle"
-          aria-label="Toggle menu"
-          aria-expanded="false"
         >
           ☰
         </button>
         <div class="nav-links" id="navLinks">
           <a href="#about">About</a>
-          <a href="#skills">Skills</a>
-          <a href="#projects">Portfolio</a>
           <a href="#experience">IT Experience</a>
+          <a href="#projects">Portfolio</a>
+          <a href="#skills">Skills</a>
           <a href="#contact">Contact</a>
           <button
+            aria-label="Toggle dark mode"
             class="theme-toggle"
             id="themeToggle"
-            aria-label="Toggle dark mode"
           >
             🌓
           </button>
           <nav class="site-nav">
             <div class="nav-links">
               <a
-                href="./assets/Mateusz_Wichtowski_Resume.pdf"
                 class="resume-cta"
-                target="_blank"
+                href="./assets/Mateusz_Wichtowski_Resume.pdf"
                 rel="noopener"
+                target="_blank"
               >
                 <svg
                   aria-hidden="true"
-                  viewBox="0 0 24 24"
                   class="resume-cta__icon"
+                  viewbox="0 0 24 24"
                 >
                   <path
-                    fill="currentColor"
                     d="M12 3a1 1 0 0 1 1 1v8.59l2.3-2.3a1 1 0 1 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.42L11 12.6V4a1 1 0 0 1 1-1zM5 19a1 1 0 0 0 1 1h12a1 1 0 1 0 0-2H6a1 1 0 0 0-1 1z"
-                  />
+                    fill="currentColor"
+                  ></path>
                 </svg>
                 Resume
               </a>
@@ -433,11 +69,10 @@
         </div>
       </nav>
     </header>
-
     <main id="home">
       <!-- Hero -->
       <section class="hero">
-        <canvas id="particles" aria-hidden="true"></canvas>
+        <canvas aria-hidden="true" id="particles"></canvas>
         <div class="hero__inner container">
           <div class="hero__text">
             <h1>
@@ -446,341 +81,71 @@
               Software Developer
             </h1>
             <p class="lede">
-              With hands-on experience delivering end-to-end applications, I
-              thrive at the intersection of data, technology, and
-              problem-solving. My strengths lie in building scalable systems,
-              extracting actionable insights from complex datasets, and
-              collaborating across teams to turn ambitious ideas into impactful
-              solutions.
+              Turning complex data into simple, reliable systems that drive real
+              impact. I build scalable solutions, uncover insights, and bring
+              ambitious ideas to life through engineering, collaboration, and
+              problem-solving.
             </p>
             <ul class="hero__stats">
               <li>
-                UTS Graduate - Proudly holding a Master of IT (Data
+                🎓 UTS Graduate - Proudly holding a Master of IT (Data
                 Analytics)<br />
                 GPA 6.44, WAM 84.56
               </li>
               <li>
                 <strong
-                  >Award Winner at UTS Tech Festival 2025 - Software Engineering
-                  Showcase<br />
+                  >🏆 Award Winner at UTS Tech Festival 2025 - Software
+                  Engineering Showcase<br />
                   (Best Interface/Design)</strong
                 >
               </li>
             </ul>
             <div class="cta">
-              <a href="#projects" class="btn btn--primary">View Portfolio</a>
+              <a class="btn btn--primary" href="#projects">View Portfolio</a>
               <a class="btn btn--ghost" href="#contact">Contact</a>
             </div>
           </div>
           <div class="hero__headshot">
             <img
-              src="images/me.jpeg"
               alt="Mateusz Wichtowski"
               class="headshot-img"
+              src="images/me.jpeg"
             />
           </div>
         </div>
       </section>
-
       <!-- About -->
-      <section id="about" class="section container">
+      <section class="section container" id="about">
         <h2>About</h2>
         <p>
-          I’m a Melbourne-based engineer working across data, AI, and software
-          development. I design and deliver scalable, end-to-end systems that
-          turn complex problems into simple, reliable solutions. My focus is on
-          creating technology that’s robust under the hood yet seamless for the
-          people who use it - enabling teams to move faster and make smarter
-          decisions.
+          I’m a Melbourne-based Data and AI Engineer who loves building
+          technology that actually makes life better. My focus is on designing
+          scalable, end-to-end systems that are robust under the hood yet
+          effortless for the people who rely on them.
         </p>
         <p>
-          With hands-on experience delivering end-to-end applications, I thrive
-          at the intersection of technology and problem-solving. My work spans
-          cloud platforms, big data processing, AI integration, and full-stack
-          development, enabling organizations to leverage technology for smarter
-          decisions and intelligent automation.
+          What drives me is impact. I’m particularly drawn to projects in
+          healthcare and large-scale consumer platforms, where reliable data
+          systems and intelligent automation can improve outcomes for millions
+          of people. I get excited about building real-time, automated solutions
+          that cut out repetitive work, enable faster decisions, and give teams
+          the tools to focus on what truly matters.
         </p>
         <p>
-          I’m always excited to collaborate on innovative projects that make a
-          real difference. If you’re looking for someone with an engineering
-          mindset, strong problem-solving skills, and an eagerness to learn, I’d
-          love to bring that energy to your team.
+          I thrive in structured environments where collaboration, clear
+          processes, and engineering discipline come together to deliver
+          results. At the same time, I bring curiosity, creativity, and a
+          problem-solving mindset — because the best systems don’t just run;
+          they evolve and adapt to what people really need.
+        </p>
+        <p>
+          If you’re looking for someone who combines strong technical depth with
+          a genuine motivation to create meaningful impact, I’d love to
+          contribute that energy to your team.
         </p>
       </section>
-
-      <!-- Skills -->
-      <section id="skills" class="section container">
-        <h2>Skills</h2>
-        <div class="chips">
-          <span class="chip">Python</span>
-          <span class="chip">SQL</span><span class="chip">Data Modeling</span>
-          <span class="chip">ETL / Data Pipeline Engineering</span
-          ><span class="chip"
-            >ML Models Building / Training & Hyperparameter Tuning</span
-          ><span class="chip">Computer Vision</span
-          ><span class="chip">Django</span><span class="chip">Flask</span>
-          <span class="chip">Natural Language Processing (NLP)</span
-          ><span class="chip">RESTful API Design</span
-          ><span class="chip">Software Architecture Design</span>
-          <span class="chip">Docker</span>
-          <span class="chip">Building Dashboards</span
-          ><span class="chip">Cloud Platform (AWS)</span>
-          <span class="chip">Frontend Development (HTML, CSS, JavaScript)</span
-          ><span class="chip">Prototype Design (Figma)</span>
-          <span class="chip">Agile Methodologies</span>
-          <span class="chip">Social Skills 🙂</span>
-        </div>
-      </section>
-
-      <!-- Portfolio -->
-      <section id="projects" class="section container">
-        <h2>Portfolio</h2>
-        <div class="grid">
-          <article class="card">
-            <div class="card__media">
-              <img
-                src="images/StockAnalysis.jpg"
-                alt="Real time stock analytics"
-              />
-            </div>
-            <div class="card__body">
-              <h3>Real Time Stock Analytics</h3>
-              <p>
-                <bold>**Still in Development**</bold><br />
-                Building a real-time data pipeline with Kafka, ksqlDB, and Avro;
-                landed Parquet to S3, queried via Athena, transformed with dbt,
-                orchestrated in Airflow, served APIs through FastAPI, and
-                visualized insights in Metabase, with CI/CD on GitHub Actions.
-              </p>
-            </div>
-            <div class="card__footer">
-              <a
-                href="https://github.com/Matiimov/RealTimeStockAnalysis"
-                target="_blank"
-                rel="noopener"
-                >GitHub</a
-              >
-              <span class="tag">Kafka</span><span class="tag">AWS</span
-              ><span class="tag">Airflow</span><span class="tag">CI/CD</span>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card__media">
-              <img src="images/iSEAO.jpg" alt="iSEAO Project" />
-            </div>
-            <div class="card__body">
-              <h3>Pipelines & Reporting (iSEAO)</h3>
-              <p>
-                Designed and deployed automated ETL pipelines with built-in
-                validation checks and dynamic summary tables, streamlining
-                reporting and eliminating manual effort.
-              </p>
-            </div>
-            <div class="card__footer">
-              <span class="tag">Python</span><span class="tag">ETL</span
-              ><span class="tag">Report Automation</span>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card__media card__media--phoneWide">
-              <img
-                src="images/CoffeeBond.jpg"
-                alt="CoffeeBond app preview"
-                class="card-img"
-              />
-            </div>
-            <div class="card__body">
-              <h3>CoffeeBond (iOS)</h3>
-              <p>
-                Award-winning app for coffee lovers, which I led the development
-                of. Designed with MVVM architecture for clean, maintainable
-                code, featuring a polished interface and seamless user
-                experience.
-              </p>
-            </div>
-            <div class="card__footer">
-              <a
-                href="https://github.com/Matiimov/CoffeeBond"
-                target="_blank"
-                rel="noopener"
-                >GitHub</a
-              >
-              <a href="#" class="tag">Swift</a><a href="#" class="tag">iOS</a
-              ><a href="#" class="tag">UI/UX</a>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card__media">
-              <img
-                src="images/SkinDx.jpg"
-                alt="SkinDx app screenshot"
-                class="card-img"
-              />
-            </div>
-            <div class="card__body">
-              <h3>SkinDx</h3>
-              <p>
-                Deep learning web app for skin cancer detection, using CNN and
-                U-Net for classification and segmentation. Built with Streamlit
-                for an intuitive interface and rapid, accurate results.
-              </p>
-            </div>
-            <div class="card__footer">
-              <a
-                href="https://github.com/Matiimov/Skin-Cancer-Detection-"
-                target="_blank"
-                rel="noopener"
-                >GitHub</a
-              >
-              <a href="#" class="tag">Python</a>
-              <a href="#" class="tag">DeepLearning</a
-              ><a href="#" class="tag">Streamlit</a>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card__media">
-              <img src="images/BubblePop.jpg" alt="BubblePopImg" />
-            </div>
-            <div class="card__body">
-              <h3>Bubble Pop Game</h3>
-              <p>
-                Lightweight game project; demonstrates clean code and simple
-                mechanics.
-              </p>
-            </div>
-            <div class="card__footer">
-              <a
-                href="https://github.com/Matiimov/BubblePopGame"
-                target="_blank"
-                rel="noopener"
-                >GitHub</a
-              >
-              <a href="#" class="tag">Swift</a><a href="#" class="tag">Game</a>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card__media">
-              <img
-                src="images/FidesAdvisory.jpg"
-                alt="Fides Advisory Web Scraping Infrastructure"
-              />
-            </div>
-            <div class="card__body">
-              <h3>Web Scraping Infrastructure (Fides Advisory)</h3>
-              <p>
-                Built scalable web scraping systems with authentication handling
-                and dynamic pagination, delivering clean, API-ready datasets for
-                high-impact analytics.
-              </p>
-            </div>
-            <div class="card__footer">
-              <span class="tag">Python</span><span class="tag">ETL</span
-              ><span class="tag">API</span>
-              <span class="tag">Lambda</span>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card__media">
-              <img
-                src="images/StockPrediction.png"
-                alt="Project - Stock Prediction Image"
-              />
-            </div>
-            <div class="card__body">
-              <h3>Sentiment Driven Stock Prediction Utilizing NLP</h3>
-              <p>
-                Academic project: using FinBERT sentiment analysis to predict
-                stock price direction (UTS coursework).
-              </p>
-            </div>
-            <div class="card__footer">
-              <a
-                href="https://github.com/Matiimov/Sentiment-Driven-Stock-Prediction-NLP"
-                target="_blank"
-                rel="noopener"
-                >GitHub</a
-              >
-              <span class="tag">NLP</span
-              ><span class="tag">Model Evaluation</span>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card__media">
-              <img src="images/CustomCusine.jpg" alt="Custom Cuisine" />
-            </div>
-            <div class="card__body">
-              <h3>CustomCuisine Website</h3>
-              <p>Responsive front-end website demonstrating clean UI design.</p>
-            </div>
-            <div class="card__footer">
-              <a
-                href="https://github.com/Matiimov/CustomCuisine-Website-Project"
-                target="_blank"
-                rel="noopener"
-                >GitHub</a
-              >
-              <a href="#" class="tag">HTML/CSS/JS</a
-              ><a href="#" class="tag">Web</a><a href="#" class="tag">UI</a>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card__media">
-              <img src="images/Calculator.jpg" alt="Calculator App" />
-            </div>
-            <div class="card__body">
-              <h3>Calculator App</h3>
-              <p>
-                Swift calculator app built with test-driven development, passing
-                all unit tests.
-              </p>
-            </div>
-            <div class="card__footer">
-              <a
-                href="https://github.com/Matiimov/CalculatorApp"
-                target="_blank"
-                rel="noopener"
-                >GitHub</a
-              >
-              <a href="#" class="tag">Swift</a
-              ><a href="#" class="tag">Unit Testing</a
-              ><a href="#" class="tag">iOS</a>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card__media">
-              <img src="images/UniversitySystem.jpg" alt="University System" />
-            </div>
-            <div class="card__body">
-              <h3>University System</h3>
-              <p>
-                Academic project highlighting data handling and software
-                structure.
-              </p>
-            </div>
-            <div class="card__footer">
-              <a
-                href="https://github.com/Matiimov/UniversitySystem"
-                target="_blank"
-                rel="noopener"
-                >GitHub</a
-              >
-              <a href="#" class="tag">Python</a><a href="#" class="tag">CRUD</a>
-            </div>
-          </article>
-        </div>
-      </section>
-
       <!-- Experience -->
-      <section id="experience" class="section container">
+      <section class="section container" id="experience">
         <h2>Experience</h2>
         <div class="timeline">
           <div class="timeline__item">
@@ -796,7 +161,6 @@
               </li>
             </ul>
           </div>
-
           <div class="timeline__item">
             <h3>Software Developer Intern • Fides Advisory</h3>
             <p class="muted">Seoul, South Korea • May 2021 – Apr 2022</p>
@@ -814,9 +178,8 @@
           </div>
         </div>
       </section>
-
       <!-- Education -->
-      <section id="education" class="section container">
+      <section class="section container" id="education">
         <h2>Education</h2>
         <div class="timeline">
           <div class="timeline__item edu-item">
@@ -829,77 +192,333 @@
               <p class="muted">GPA 6.44 • WAM 84.56</p>
             </div>
             <div class="edu-logo">
-              <img src="images/uts.jpg" alt="UTS Logo" />
+              <img alt="UTS Logo" src="images/uts.jpg" />
             </div>
           </div>
-
           <div class="timeline__item edu-item">
             <div class="edu-text">
               <h3>Bachelor of Economics (Risk Management)</h3>
               <p class="muted">University of Economics in Katowice</p>
             </div>
             <div class="edu-logo">
-              <img src="images/uek.jpg" alt="UEK Logo" />
+              <img alt="UEK Logo" src="images/uek.jpg" />
             </div>
           </div>
         </div>
       </section>
+      <!-- Portfolio -->
+      <section class="section container" id="projects">
+        <h2>Portfolio</h2>
+        <div class="grid">
+          <article class="card">
+            <div class="card__media">
+              <img
+                alt="Real time stock analytics"
+                src="images/StockAnalysis.jpg"
+              />
+            </div>
+            <div class="card__body">
+              <h3>Real Time Stock Analytics</h3>
+              <p>
+                <bold>**Still in Development**</bold><br />
+                Building a real-time data pipeline with Kafka, ksqlDB, and Avro;
+                landed Parquet to S3, queried via Athena, transformed with dbt,
+                orchestrated in Airflow, served APIs through FastAPI, and
+                visualized insights in Metabase, with CI/CD on GitHub Actions.
+              </p>
+            </div>
+            <div class="card__footer">
+              <a
+                href="https://github.com/Matiimov/RealTimeStockAnalysis"
+                rel="noopener"
+                target="_blank"
+                >GitHub</a
+              >
+              <span class="tag">Kafka</span><span class="tag">AWS</span
+              ><span class="tag">Airflow</span><span class="tag">CI/CD</span>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card__media">
+              <img alt="iSEAO Project" src="images/iSEAO.jpg" />
+            </div>
+            <div class="card__body">
+              <h3>Pipelines &amp; Reporting (iSEAO)</h3>
+              <p>
+                Designed and deployed automated ETL pipelines with built-in
+                validation checks and dynamic summary tables, streamlining
+                reporting and eliminating manual effort.
+              </p>
+            </div>
+            <div class="card__footer">
+              <span class="tag">Python</span><span class="tag">ETL</span
+              ><span class="tag">Report Automation</span>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card__media card__media--phoneWide">
+              <img
+                alt="CoffeeBond app preview"
+                class="card-img"
+                src="images/CoffeeBond.jpg"
+              />
+            </div>
+            <div class="card__body">
+              <h3>CoffeeBond (iOS)</h3>
+              <p>
+                Award-winning app for coffee lovers, which I led the development
+                of. Designed with MVVM architecture for clean, maintainable
+                code, featuring a polished interface and seamless user
+                experience.
+              </p>
+            </div>
+            <div class="card__footer">
+              <a
+                href="https://github.com/Matiimov/CoffeeBond"
+                rel="noopener"
+                target="_blank"
+                >GitHub</a
+              >
+              <span class="tag">Swift</span>
+              <span class="tag">iOS</span>
+              <span class="tag">UI/UX</span>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card__media">
+              <img
+                alt="SkinDx app screenshot"
+                class="card-img"
+                src="images/SkinDx.jpg"
+              />
+            </div>
+            <div class="card__body">
+              <h3>SkinDx</h3>
+              <p>
+                Deep learning web app for skin cancer detection, using CNN and
+                U-Net for classification and segmentation. Built with Streamlit
+                for an intuitive interface and rapid, accurate results.
+              </p>
+            </div>
+            <div class="card__footer">
+              <a
+                href="https://github.com/Matiimov/Skin-Cancer-Detection-"
+                rel="noopener"
+                target="_blank"
+                >GitHub</a
+              >
+              <span class="tag">Python</span>
+              <span class="tag">DeepLearning</span>
+              <span class="tag">Streamlit</span>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card__media">
+              <img alt="BubblePopImg" src="images/BubblePop.jpg" />
+            </div>
+            <div class="card__body">
+              <h3>Bubble Pop Game</h3>
+              <p>
+                Lightweight game project; demonstrates clean code and simple
+                mechanics.
+              </p>
+            </div>
+            <div class="card__footer">
+              <a
+                href="https://github.com/Matiimov/BubblePopGame"
+                rel="noopener"
+                target="_blank"
+                >GitHub</a
+              >
+              <span class="tag">Swift</span>
+              <span class="tag">Game</span>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card__media">
+              <img
+                alt="Fides Advisory Web Scraping Infrastructure"
+                src="images/FidesAdvisory.jpg"
+              />
+            </div>
+            <div class="card__body">
+              <h3>Web Scraping Infrastructure (Fides Advisory)</h3>
+              <p>
+                Built scalable web scraping systems with authentication handling
+                and dynamic pagination, delivering clean, API-ready datasets for
+                high-impact analytics.
+              </p>
+            </div>
+            <div class="card__footer">
+              <span class="tag">Python</span><span class="tag">ETL</span
+              ><span class="tag">API</span>
+              <span class="tag">Lambda</span>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card__media">
+              <img
+                alt="Project - Stock Prediction Image"
+                src="images/StockPrediction.png"
+              />
+            </div>
+            <div class="card__body">
+              <h3>Sentiment Driven Stock Prediction Utilizing NLP</h3>
+              <p>
+                Academic project: using FinBERT sentiment analysis to predict
+                stock price direction (UTS coursework).
+              </p>
+            </div>
+            <div class="card__footer">
+              <a
+                href="https://github.com/Matiimov/Sentiment-Driven-Stock-Prediction-NLP"
+                rel="noopener"
+                target="_blank"
+                >GitHub</a
+              >
+              <span class="tag">NLP</span
+              ><span class="tag">Model Evaluation</span>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card__media">
+              <img alt="Custom Cuisine" src="images/CustomCusine.jpg" />
+            </div>
+            <div class="card__body">
+              <h3>CustomCuisine Website</h3>
+              <p>Responsive front-end website demonstrating clean UI design.</p>
+            </div>
+            <div class="card__footer">
+              <a
+                href="https://github.com/Matiimov/CustomCuisine-Website-Project"
+                rel="noopener"
+                target="_blank"
+                >GitHub</a
+              >
 
+              <span class="tag">HTML/CSS/JS</span><span class="tag">UI</span>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card__media">
+              <img alt="Calculator App" src="images/Calculator.jpg" />
+            </div>
+            <div class="card__body">
+              <h3>Calculator App</h3>
+              <p>
+                Swift calculator app built with test-driven development, passing
+                all unit tests.
+              </p>
+            </div>
+            <div class="card__footer">
+              <a
+                href="https://github.com/Matiimov/CalculatorApp"
+                rel="noopener"
+                target="_blank"
+                >GitHub</a
+              >
+              <span class="tag">Swift</span>
+              <span class="tag">Unit Testing</span>
+              <span class="tag">iOS</span>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card__media">
+              <img alt="University System" src="images/UniversitySystem.jpg" />
+            </div>
+            <div class="card__body">
+              <h3>University System</h3>
+              <p>
+                Academic project highlighting data handling and software
+                structure.
+              </p>
+            </div>
+            <div class="card__footer">
+              <a
+                href="https://github.com/Matiimov/UniversitySystem"
+                rel="noopener"
+                target="_blank"
+                >GitHub</a
+              >
+              <span class="tag">Python</span>
+              <span class="tag">CRUD</span>
+            </div>
+          </article>
+        </div>
+      </section>
+      <!-- Skills -->
+      <section class="section container" id="skills">
+        <h2>Skills</h2>
+        <div class="chips">
+          <span class="chip">Python</span>
+          <span class="chip">SQL</span><span class="chip">Data Modeling</span>
+          <span class="chip">ETL / Data Pipeline Engineering</span
+          ><span class="chip"
+            >ML Models Building / Training &amp; Hyperparameter Tuning</span
+          ><span class="chip">Computer Vision</span
+          ><span class="chip">Django</span><span class="chip">Flask</span>
+          <span class="chip">Natural Language Processing (NLP)</span
+          ><span class="chip">RESTful API Design</span
+          ><span class="chip">Software Architecture Design</span>
+          <span class="chip">Docker</span>
+          <span class="chip">Building Dashboards</span
+          ><span class="chip">Cloud Platform (AWS)</span>
+          <span class="chip">Frontend Development (HTML, CSS, JavaScript)</span
+          ><span class="chip">Prototype Design (Figma)</span>
+          <span class="chip">Agile Methodologies</span>
+          <span class="chip">Social Skills 🙂</span>
+        </div>
+      </section>
       <!-- Contact -->
-      <section id="contact" class="section container">
+      <section class="section container" id="contact">
         <h2>Contact</h2>
         <p>
           Based in Melbourne, VIC • Open to Data Engineer, Data Scientist, Data
           Analyst, AI Engineer, or Software Developer Roles
         </p>
-
         <!-- Email -->
         <div class="email-line">
           <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="18"
             fill="currentColor"
-            viewBox="0 0 24 24"
+            height="18"
+            viewbox="0 0 24 24"
+            width="18"
+            xmlns="http://www.w3.org/2000/svg"
           >
             <path
               d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 2v.01L12 13 4 6.01V6h16zM4 18V8.236l7.382 5.514a1 1 0 0 0 1.236 0L20 8.236V18H4z"
-            />
+            ></path>
           </svg>
-
-          <a href="mailto:matiimov@gmail.com" class="email-address"
+          <a class="email-address" href="mailto:matiimov@gmail.com"
             >matiimov@gmail.com</a
           >
         </div>
-
         <!-- Social links -->
         <div class="contact-links">
           <a
             class="btn btn--ghost"
             href="https://www.linkedin.com/in/matiimov/"
-            target="_blank"
             rel="noopener"
+            target="_blank"
             >LinkedIn</a
           >
-
           <a
             class="btn btn--ghost"
             href="https://github.com/Matiimov"
-            target="_blank"
             rel="noopener"
+            target="_blank"
             >GitHub</a
           >
           <a
-            href="./assets/Mateusz_Wichtowski_Resume.pdf"
             class="resume-cta"
-            target="_blank"
+            href="./assets/Mateusz_Wichtowski_Resume.pdf"
             rel="noopener"
+            target="_blank"
             >Resume</a
           >
         </div>
       </section>
     </main>
-
     <!-- Footer -->
     <footer class="site-footer container">
       <small
@@ -907,7 +526,6 @@
         reserved.</small
       >
     </footer>
-
     <!-- Scripts -->
     <script src="script.js"></script>
   </body>
