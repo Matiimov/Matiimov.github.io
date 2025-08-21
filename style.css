@@ -20,6 +20,7 @@
   --space-8: 48px;
   --space-10: 64px;
   --header-h: 72px;
+  --gutter: clamp(24px, 6vw, 56px);
 }
 html[data-theme="dark"] {
   --bg: #0b1220;
@@ -54,10 +55,15 @@ body {
 }
 
 /* Layout */
-.container {
+/* .container {
   max-width: var(--container);
   padding: 0 var(--space-5);
   margin: 0 auto;
+} */
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding-inline: var(--gutter);
 }
 
 /* Header and navigation */
@@ -592,4 +598,15 @@ button:focus {
 /* Ensure dark header translucency similar to inline */
 html[data-theme="dark"] .site-header {
   background: rgba(12, 19, 36, 0.85);
+}
+
+header,
+.section,
+.hero,
+footer {
+  padding-inline: var(--gutter);
+}
+
+.section > .grid {
+  padding-inline: var(--gutter);
 }
