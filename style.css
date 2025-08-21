@@ -606,7 +606,3 @@ header,
 footer {
   padding-inline: var(--gutter);
 }
-
-.section > .grid {
-  padding-inline: var(--gutter);
-}
