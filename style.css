@@ -4,7 +4,7 @@
   --text: #0f172a;
   --muted: #1e293b;
   --surface: #f2fbff;
-  --card: #f2fbff;
+  --card: #f9fcfe;
   --border: #e2e8f0;
   --primary: #111827;
   --accent: #2563eb;
@@ -54,12 +54,6 @@ body {
   line-height: 1.65;
 }
 
-/* Layout */
-/* .container {
-  max-width: var(--container);
-  padding: 0 var(--space-5);
-  margin: 0 auto;
-} */
 .container {
   max-width: var(--container);
   margin: 0 auto;
@@ -296,7 +290,7 @@ html[data-theme="dark"] .hero__text {
   padding: 6px 10px;
   border: 1px solid var(--border);
   border-radius: 999px;
-  background: var(--card);
+  background: transparent;
   color: var(--muted);
   font-size: 14px;
 }
@@ -392,7 +386,7 @@ html[data-theme="dark"] .hero__text {
   gap: var(--space-3);
   padding: 0 var(--space-5) var(--space-5);
   margin-top: auto;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: flex-start;
 }
 
@@ -417,7 +411,7 @@ html[data-theme="dark"] .card__footer a:first-child {
   font-size: 12px;
   text-decoration: none;
   color: var(--muted);
-  background: var(--surface);
+  background: transparent;
   border: 1px solid var(--border);
   padding: 4px 8px;
   border-radius: 999px;
@@ -467,9 +461,13 @@ html[data-theme="dark"] .card__footer a:first-child {
   transform: translateY(-1px);
 }
 .btn--ghost {
-  background: transparent;
+  background: #f9fcfe;
   color: var(--primary);
   border: 1px solid var(--primary);
+}
+
+html[data-theme="dark"] .btn--ghost {
+  background: transparent;
 }
 
 .btn--primary {
