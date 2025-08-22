@@ -1,10 +1,10 @@
 /* Theme variables */
 :root {
-  --bg: #ffffff00;
+  --bg: #f2fbff;
   --text: #0f172a;
   --muted: #1e293b;
-  --surface: #f8fafc;
-  --card: #ffffff;
+  --surface: #f2fbff;
+  --card: #f2fbff;
   --border: #e2e8f0;
   --primary: #111827;
   --accent: #2563eb;
