@@ -126,7 +126,7 @@ html[data-theme="dark"] .site-header {
 
 .resume-cta,
 .nav-links .resume-cta {
-  /* margin-left: auto; */
+  margin-left: auto;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -525,8 +525,8 @@ button:focus {
   flex: 1;
 }
 .hero__top img {
-  width: clamp(72px, 18vw, 120px);
-  height: clamp(72px, 18vw, 120px);
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   object-fit: cover;
   object-position: 90% 90%;
@@ -589,15 +589,16 @@ button:focus {
     text-align: left;
   }
 }
-
 @media (max-width: 768px) {
   .hero__top {
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    gap: 12px;
   }
   .headshot--small {
-    margin-top: 0;
+    width: 160px;
+    height: 160px;
+    margin-top: var(--space-2);
+    object-position: 90% 90%;
   }
 }
 
