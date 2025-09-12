@@ -272,6 +272,9 @@ html[data-theme="dark"] .hero__text {
   color: var(--primary);
 }
 
+/* Skills section container (no ambient background to stay consistent) */
+#skills { position: relative; }
+
 .chips {
   display: flex;
   gap: var(--space-3);
@@ -285,6 +288,85 @@ html[data-theme="dark"] .hero__text {
   color: var(--muted);
   font-size: 14px;
 }
+
+/* Skills: categorized cards */
+.skill-groups {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+.skill-card {
+  position: relative;
+  /* per-card accent with sensible default */
+  --skill-accent: var(--accent);
+  border: 1px solid var(--border);
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--space-5);
+  transition: transform 0.12s ease, box-shadow 0.2s ease;
+}
+.skill-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(2, 6, 23, 0.12);
+}
+html[data-theme="dark"] .skill-card:hover {
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55);
+}
+.skill-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+.skill-card__icon {
+  font-size: 20px;
+  line-height: 1;
+}
+.skill-card__title {
+  margin: 0;
+  font-size: 18px;
+  color: var(--primary);
+  letter-spacing: 0.1px;
+  font-weight: 700;
+}
+.skill-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.badge {
+  font-size: 12px;
+  line-height: 1.2;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--muted);
+  background: transparent;
+  white-space: nowrap;
+}
+.badge:hover {
+  color: var(--text);
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+}
+.badge:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Per-category accents */
+.skill-card[data-accent="green"] { --skill-accent: #22c55e; }
+.skill-card[data-accent="indigo"] { --skill-accent: #6366f1; }
+.skill-card[data-accent="purple"] { --skill-accent: #a855f7; }
+.skill-card[data-accent="orange"] { --skill-accent: #f59e0b; }
+.skill-card[data-accent="blue"] { --skill-accent: #3b82f6; }
+.skill-card[data-accent="pink"] { --skill-accent: #ec4899; }
+.skill-card[data-accent="teal"] { --skill-accent: #14b8a6; }
+
+/* no extra icon hover styling to keep parity with other cards */
 
 .grid {
   display: grid;
